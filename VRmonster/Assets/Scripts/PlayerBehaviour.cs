@@ -33,27 +33,28 @@ public class PlayerBehaviour : MonoBehaviour {
 		if(vrHead.rotation.eulerAngles.z > 25 && vrHead.rotation.eulerAngles.z <= 85 && moveLeft == false){
 			//controller.SimpleMove (-right*speed);
 			moveLeft = true;
+			contLeft = 0;
 		}else if(vrHead.rotation.eulerAngles.z <= 335 && vrHead.rotation.eulerAngles.z >= 275 && moveRight == false){
 			//controller.SimpleMove (right*speed);
 			moveRight = true;
+			contRight = 0;
 		}
 			
 		if(moveLeft == true){
+			Debug.Log ("esta movendo direita");
 			controller.SimpleMove (-right*speed);
 			contLeft += Time.deltaTime;
 			if(contLeft >= tempDesvia){
-				contLeft = 0;
 				moveLeft = false;
 			}
 		}else if(moveRight == true){
 			controller.SimpleMove (right*speed);
 			contRight += Time.deltaTime;
 			if(contRight >= tempDesvia){
-				contRight = 0;
 				moveRight = false;
 			}
 		}
 
-		Debug.Log (vrHead.rotation.ToString() + " | " + vrHead.rotation.eulerAngles.z.ToString());
+		//Debug.Log (vrHead.rotation.ToString() + " | " + vrHead.rotation.eulerAngles.z.ToString());
 	}
 }
