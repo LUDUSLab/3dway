@@ -33,17 +33,14 @@ public class PlayerBehaviour : MonoBehaviour {
 		Vector3 right = vrHead.TransformDirection (Vector3.right);
 
 		if(vrHead.rotation.eulerAngles.z > 25 && vrHead.rotation.eulerAngles.z <= 85 && moveLeft == false){
-			//controller.SimpleMove (-right*speed);
 			moveLeft = true;
 			contLeft = 0;
 		}else if(vrHead.rotation.eulerAngles.z <= 335 && vrHead.rotation.eulerAngles.z >= 275 && moveRight == false){
-			//controller.SimpleMove (right*speed);
 			moveRight = true;
 			contRight = 0;
 		}
 			
 		if(moveLeft == true){
-			Debug.Log ("esta movendo direita");
 			controller.SimpleMove (-right*speed);
 			contLeft += Time.deltaTime;
 			if(contLeft >= tempDesvia){
@@ -57,12 +54,10 @@ public class PlayerBehaviour : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetButtonDown("Jump")){
+		if(Input.GetButtonDown("Fire1")){
 			bala.gameObject.SetActive (true);
 			Instantiate (bala, bala.transform.position, Quaternion.identity);
 			bala.gameObject.SetActive (false);
 		}
-
-		//Debug.Log (vrHead.rotation.ToString() + " | " + vrHead.rotation.eulerAngles.z.ToString());
 	}
 }
