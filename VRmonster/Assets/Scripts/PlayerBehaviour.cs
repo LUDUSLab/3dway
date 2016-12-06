@@ -6,9 +6,11 @@ public class PlayerBehaviour : MonoBehaviour {
 	public float speed;
 	public float tempDesvia;
 
+	public GameObject bala;
+
 	private CharacterController controller;
 	private GvrViewer gvrViewer;
-	public Transform vrHead;
+	private Transform vrHead;
 
 	private bool moveRight;
 	private bool moveLeft;
@@ -20,9 +22,9 @@ public class PlayerBehaviour : MonoBehaviour {
 	void Start () {
 		controller = GetComponent<CharacterController> ();
 		gvrViewer = transform.GetChild (0).GetComponent<GvrViewer> ();
+		vrHead = Camera.main.transform;
 		contRight = 0;
 		contLeft = 0;
-		//vrHead = Camera.main.transform;
 	}
 	
 	// Update is called once per frame
@@ -53,6 +55,12 @@ public class PlayerBehaviour : MonoBehaviour {
 			if(contRight >= tempDesvia){
 				moveRight = false;
 			}
+		}
+
+		if(Input.GetButtonDown("Jump")){
+			bala.gameObject.SetActive (true);
+			Instantiate (bala, bala.transform.position, Quaternion.identity);
+			bala.gameObject.SetActive (false);
 		}
 
 		//Debug.Log (vrHead.rotation.ToString() + " | " + vrHead.rotation.eulerAngles.z.ToString());
