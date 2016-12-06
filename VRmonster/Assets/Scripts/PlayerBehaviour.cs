@@ -29,6 +29,7 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		transform.rotation = new Quaternion(0, 0, 0, 0);
 
 		Vector3 right = vrHead.TransformDirection (Vector3.right);
 
@@ -59,5 +60,9 @@ public class PlayerBehaviour : MonoBehaviour {
 			Instantiate (bala, bala.transform.position, Quaternion.identity);
 			bala.gameObject.SetActive (false);
 		}
+	}
+
+	void OnCollisionEnter(Collision other){
+		Debug.Log ("esta tocaaaaaaando");
 	}
 }
