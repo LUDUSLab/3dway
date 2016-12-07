@@ -9,6 +9,8 @@ public class monsterBehaviour : MonoBehaviour {
 	private bool tomaDano;
 	private bool estaMorto;
 
+    public Transform Lifes;
+
 	// Use this for initialization
 	void Start () {
 		estaMorto = false;
@@ -25,17 +27,17 @@ public class monsterBehaviour : MonoBehaviour {
 			tomaDano = false;
 		}
 
-		if(vida <= 0){
-			estaMorto = true;
-		}
-
-		anime.SetBool ("estaMorto", estaMorto);
 
 
 	}
 
 	void OnCollisionEnter(Collision other){
-		tomaDano = true;
+        anime.SetTrigger("Damage");
 		vida--;
-	}
+        if(vida <= 0)
+        {
+            anime.SetTrigger("Die");
+        }
+        Destroy(Lifes.GetChild(0).gameObject);
+    }
 }
